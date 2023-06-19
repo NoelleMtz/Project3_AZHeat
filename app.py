@@ -5,7 +5,8 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 
-from flask import Flask, jsonify
+from flask import Flask, render_template, jsonify
+
 
 # from flask_cors.extension import CORS
 #################################################
@@ -33,15 +34,50 @@ app = Flask(__name__)
 
 @app.route("/")
 def welcome():
-    """List all available api routes."""
-    return (
-        f"Available Routes for AZ extreme hete days:<br/>"
-        f"-- Extreme Heat Days for Apache County: <a href=\"/api/v1.0/ApacheCounty\">/api/v1.0/ApacheCounty<a><br/>"
-        f"-- Enter a county to get the temperatures for the past 10 years: /api/v1.0/countyID<br>"
-    )
+    return render_template('index.html')
+
+@app.route("/api/v1.0/AZ")
+def allData():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+    
+    # Convert the query results from your heat days Apache analysis
+    allData = session.query(ExHt.key, ExHt.county, ExHt.countyID, ExHt.year,ExHt.ext_heat_days).\
+        order_by(ExHt.key).all()
+    
+    session.close()
+
+    return jsonify(allData)
+    # return render_template("index.html", Apache_query_values=Apache_query_values)
+
+
+
+@app.route("/api/v1.0/AZ2021")
+def twentyone():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+    
+    # Convert the query results from your heat days Apache analysis
+    All_ehd = session.query(ExHt.county, ExHt.ext_heat_days).\
+        filter(ExHt.year == '2021').\
+        order_by(ExHt.county).all()
+    
+    session.close()
+
+    # analysis to a dictionary using year as the key and ext as the value.
+    twentyone_query_values = []
+    for second, first in All_ehd:
+        All_ehd_dict = {}
+        All_ehd_dict["county"] = second
+        All_ehd_dict["ext_heat_days"] = first
+        twentyone_query_values.append(All_ehd_dict)
+
+    return jsonify(twentyone_query_values)
+    # return render_template("index.html", Apache_query_values=Apache_query_values)
+
 
 @app.route("/api/v1.0/ApacheCounty")
-def names():
+def ApacheCounty():
     # Create our session (link) from Python to the DB
     session = Session(engine)
     
@@ -56,11 +92,12 @@ def names():
     Apache_query_values = []
     for two, one in Apache_ehd:
         Apache_EHD_dict = {}
-        Apache_EHD_dict["Year"] = two
-        Apache_EHD_dict["Extreme Heat Days"] = one
+        Apache_EHD_dict["year"] = two
+        Apache_EHD_dict["ext_heat_days"] = one
         Apache_query_values.append(Apache_EHD_dict)
 
-    return jsonify(Apache_query_values) 
+    return jsonify(Apache_query_values)
+    # return render_template("index.html", Apache_query_values=Apache_query_values)
 
 # Dynamic Route
 @app.route("/api/v1.0/<countyID>")
