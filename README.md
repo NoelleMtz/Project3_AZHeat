@@ -2,37 +2,28 @@
 
 This project was a part of the University of Arizona Data Analaysis Bootcamp (2023). The project is focused on telling a story using data visualizations.
 
-## Contributors
-* [Abby](https://github.com/Abby-Boulter)
-* [Brittany](https://github.com/brooksbb11)
-* [Dakota](https://github.com/DakNewcomb)
-* [Noelle](https://github.com/noellemtz)
+## Description
+Within the United States, 700 heat-related deaths occur yearly. These deaths are preventable, and we can decrease these numbers by spreading awareness. Our team aims to provide a dashboard linking health data to clear visualizations that the public can use. Using the CDC's National Environmental Public Health Tracking Network data API, we created a dashboard to provide public acccess to heat-related illness data. 
 
-## Overview
-Within the United States, 700 heat-related deaths occur yearly. These deaths are preventable, and we can decrease these numbers by spreading awareness. Our team aims to provide a dashboard linking health data to clear visualizations that the public can use. Using the CDC's National Environmental Public Health Tracking Network data API and requesting data from the Arizona Department of Health Services Environmental Health Tracking data, we created a dashboard to provide public acccess to heat-related illness data. We examined the relations among heat-related illness ED visits throughout the past decade, high daily temperatures, social vulnerability index, and other possibilities derived from the data.
+## Visuals
 
-## Deployed Version
-[site](url)
 
 ## Data Sources
-Arizona Department of Health Services. Arizona Environmental Public Health Tracking Network. (n.d.) Web. Accessed: June 01, 2023. www.azdhs.gov/epht.
-
 Centers for Disease Control and Prevention. National Environmental Public Health Tracking Network. (n.d.) Web API. www.cdc.gov/ephtracking. 
 
 ## Key Learnings
 * How to communicate and work efficiently within a team.
 
-## Future Improvements
-Add 
 
-## Technologies Used:
-Python
-SQLLite
-HTML5
-CSS3
-Javascript
+## Authors and acknowledgment
+* [Abby](https://github.com/Abby-Boulter)
+* [Brittany](https://github.com/brooksbb11)
+* [Dakota](https://github.com/DakNewcomb)
+* [Noelle](https://github.com/noellemtz)
+* Acknowledgements:
+     * Our instructor & teaching assistant: Mark F, Zachary Johnson
 
-## Requirements
+## Grading Requirements
 1.	Your visualization must include a Python Flask-powered API, HTML/CSS, JavaScript, and at least one database (SQL, MongoDB, SQLite, etc.).
 2.	Your project should fall into one of the following three tracks:
     * A combination of web scraping and Leaflet or Plotly
