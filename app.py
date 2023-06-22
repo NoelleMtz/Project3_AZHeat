@@ -42,13 +42,22 @@ def allData():
     session = Session(engine)
     
     # Convert the query results from your heat days Apache analysis
-    allData = session.query(ExHt.key, ExHt.county, ExHt.countyID, ExHt.year,ExHt.ext_heat_days).\
-        order_by(ExHt.key).all()
+    allData = session.query(ExHt.key, ExHt.county, ExHt.year, ExHt.ext_heat_days).\
+        order_by(ExHt.county).all()
     
     session.close()
 
-    return jsonify(allData)
-    # return render_template("index.html", Apache_query_values=Apache_query_values)
+    # analysis to a dictionary using year as the key and ext as the value.
+    all_query_values = []
+
+    for index, element in enumerate(allData):
+        my_dict = {}
+        my_dict[index] = element
+        all_query_values.append(my_dict)
+    
+    return jsonify(all_query_values)
+    # this returns too much for the list. Want it something like ExHt.county
+    # then listed below 
 
 
 

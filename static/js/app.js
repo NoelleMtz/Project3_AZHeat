@@ -8,15 +8,15 @@ d3.json(all_query_values).then(function(data) {
   console.log(data);
 });
 
-// Fetch the JSON data and console log it
-d3.json(twentyone_query_values).then(function(data) {
-  console.log(data);
-});
+// // Fetch the JSON data and console log it
+// d3.json(twentyone_query_values).then(function(data) {
+//   console.log(data);
+// });
 
-// Fetch the JSON data and console log it
-d3.json(Apache_query_values).then(function(data) {
-  console.log(data);
-});
+// // Fetch the JSON data and console log it
+// d3.json(Apache_query_values).then(function(data) {
+//   console.log(data);
+// });
 
 function buildLineChart(Apache) {
 
