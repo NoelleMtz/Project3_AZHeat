@@ -49,17 +49,40 @@ def allData():
 
     # analysis to a dictionary using year as the key and ext as the value.
     all_query_values = []
+    
+    # Create list with column names
+    cNames= ["key", "county", "year", "ext_heat_days"]
 
-    for index, element in enumerate(allData):
+    # enumerate- returns index & element
+    for element in allData:
         my_dict = {}
-        my_dict[index] = element
+        
+        for index1, element1 in enumerate(cNames):
+            my_dict[element1] = element[index1]
+            
         all_query_values.append(my_dict)
+
     
     return jsonify(all_query_values)
     # this returns too much for the list. Want it something like ExHt.county
     # then listed below 
 
+@app.route("/api/v1.0/counties")
+def counties():
+    
+    # Open session
+    session = Session(engine)
+    
+    # Query all counties 
+    results = session.query(ExHt.county).distinct().all()
 
+    # close session
+    session.close()
+
+      # Convert list of tuples into normal list
+    all_counties = list(np.ravel(results))
+
+    return jsonify(all_counties)
 
 @app.route("/api/v1.0/AZ2021")
 def twentyone():
